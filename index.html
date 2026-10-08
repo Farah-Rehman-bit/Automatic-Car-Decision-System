@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Automatic Car</title>
+
+
+    <!-- =========================
+         INTER FONT
+    ========================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!--  BACKGROUND VIDEO -->
+
+    <video
+        class="background-video"
+        autoplay
+        muted
+        loop
+        playsinline
+    >
+
+        <source
+            src="car.mp4"
+            type="video/mp4"
+        >
+
+        Your browser does not support video.
+        
+    </video>
+
+
+    <!-- VIDEO DARK OVERLAY -->
+
+    <div class="video-overlay"></div>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main">
+
+
+        <!-- LEFT SIDE= -->
+
+        <div class="content">
+
+
+            <div class="small-title">
+
+                AI-Powered Driving Logic
+
+            </div>
+
+
+            <h1>
+
+                Smart Automatic
+
+                <span>
+                    Car Decision System
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Enter the sensor information and let the car
+                decide what to do. The system uses real-world
+                traffic rules to make safe driving decisions.
+
+            </p>
+
+
+            <!-- FEATURES -->
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🛡️
+                    </div>
+
+                    <p>
+                        More Safety
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚙️
+                    </div>
+
+                    <p>
+                        Smart Decisions
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🌱
+                    </div>
+
+                    <p>
+                        Better Future
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT CARD -->
+
+        <div class="card">
+
+
+            <h2>
+                🚗 Enter Sensor Information
+            </h2>
+
+
+            <p class="card-description">
+
+                Fill in the details below and click the button
+                to see what the automatic car decides.
+
+            </p>
+
+
+
+            <!-- TRAFFIC LIGHT -->
+
+            <div class="input-group">
+
+                <label>
+                    🚦 Traffic Light
+                </label>
+
+
+                <select id="trafficLight">
+
+                    <option value="red">
+                        🔴 Red
+                    </option>
+
+                    <option value="yellow">
+                        🟡 Yellow
+                    </option>
+
+                    <option value="green">
+                        🟢 Green
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- SPEED -->
+
+            <div class="input-group">
+
+                <label>
+                    ⚡ Speed (km/h)
+                </label>
+
+
+                <input
+                    type="number"
+                    id="speed"
+                    placeholder="Enter your speed"
+                    min="0"
+                >
+
+            </div>
+
+
+
+            <!-- PEDESTRIAN -->
+
+            <div class="input-group">
+
+                <label>
+                    🚶 Pedestrian
+                </label>
+
+
+                <select id="pedestrian">
+
+                    <option value="no">
+                        No
+                    </option>
+
+                    <option value="yes">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- DISTANCE -->
+
+            <div class="input-group">
+
+                <label>
+                    🚘 Distance from Vehicle Ahead (meters)
+                </label>
+
+
+                <input
+                    type="number"
+                    id="distance"
+                    placeholder="Enter distance"
+                    min="0"
+                >
+
+            </div>
+
+
+
+            <!-- ROAD CONDITION -->
+
+            <div class="input-group">
+
+                <label>
+                    🛣️ Road Condition
+                </label>
+
+
+                <select id="roadCondition">
+
+                    <option value="dry">
+                        Dry
+                    </option>
+
+                    <option value="wet">
+                        Wet
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+
+            <button onclick="checkCar()">
+
+                🚗 Check Car Decision
+
+            </button>
+
+
+
+            <!-- RESULT -->
+
+            <div class="result" id="resultBox">
+
+                <h3>
+                    Car Decision
+                </h3>
+
+
+                <p id="decision">
+
+                    Enter sensor information...
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function checkCar() {
+
+
+            /* Get values */
+
+            const trafficLight =
+                document.getElementById("trafficLight").value;
+
+
+            const speedInput =
+                document.getElementById("speed").value;
+
+
+            const pedestrian =
+                document.getElementById("pedestrian").value;
+
+
+            const distanceInput =
+                document.getElementById("distance").value;
+
+
+            const roadCondition =
+                document.getElementById("roadCondition").value;
+
+
+            const decisionElement =
+                document.getElementById("decision");
+
+
+            const resultBox =
+                document.getElementById("resultBox");
+
+
+            /* Convert numbers */
+
+            const speed =
+                Number(speedInput);
+
+
+            const distance =
+                Number(distanceInput);
+
+
+            /* Remove old result colors */
+
+            resultBox.classList.remove(
+                "stop",
+                "warning",
+                "go",
+                "danger"
+            );
+
+
+            /* =========================
+               VALIDATION
+            ========================== */
+
+            if (
+                speedInput === "" ||
+                distanceInput === ""
+            ) {
+
+                decisionElement.textContent =
+                    "⚠️ Please enter speed and distance.";
+
+                resultBox.classList.add("warning");
+
+                return;
+            }
+
+
+            /* =========================
+               RULE 1
+               RED LIGHT
+            ========================== */
+
+            if (trafficLight === "red") {
+
+                decisionElement.textContent =
+                    "🔴 STOP THE CAR";
+
+                resultBox.classList.add("stop");
+
+            }
+
+
+            /* =========================
+               RULE 2
+               PEDESTRIAN
+            ========================== */
+
+            else if (pedestrian === "yes") {
+
+                decisionElement.textContent =
+                    "🚶 STOP — PEDESTRIAN DETECTED";
+
+                resultBox.classList.add("stop");
+
+            }
+
+
+            /* =========================
+               RULE 3
+               VEHICLE TOO CLOSE
+            ========================== */
+
+            else if (distance < 5) {
+
+                decisionElement.textContent =
+                    "🚨 EMERGENCY BRAKE";
+
+                resultBox.classList.add("danger");
+
+            }
+
+
+            /* =========================
+               RULE 4
+               YELLOW LIGHT
+            ========================== */
+
+            else if (trafficLight === "yellow") {
+
+                decisionElement.textContent =
+                    "🟡 SLOW DOWN";
+
+                resultBox.classList.add("warning");
+
+            }
+
+
+            /* =========================
+               RULE 5
+               WET ROAD
+            ========================== */
+
+            else if (
+                roadCondition === "wet" &&
+                speed > 50
+            ) {
+
+                decisionElement.textContent =
+                    "🌧️ SLOW DOWN — WET ROAD";
+
+                resultBox.classList.add("warning");
+
+            }
+
+
+            /* =========================
+               RULE 6
+               HIGH SPEED
+            ========================== */
+
+            else if (speed > 100) {
+
+                decisionElement.textContent =
+                    "⚠️ DANGER — REDUCE SPEED";
+
+                resultBox.classList.add("danger");
+
+            }
+
+
+            /* =========================
+               RULE 7
+               SAFE TO GO
+            ========================== */
+
+            else if (
+                trafficLight === "green" &&
+                distance >= 5
+            ) {
+
+                decisionElement.textContent =
+                    "🟢 GO — ROAD IS CLEAR";
+
+                resultBox.classList.add("go");
+
+            }
+
+
+            /* =========================
+               INVALID
+            ========================== */
+
+            else {
+
+                decisionElement.textContent =
+                    "❌ CHECK THE SENSOR INFORMATION";
+
+                resultBox.classList.add("warning");
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
